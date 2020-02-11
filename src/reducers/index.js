@@ -8,10 +8,12 @@ const rootReducer = (state = initialState, {type}) => {
     switch (type) {
         case INCREMENT_OPERATION:
             return {
+                ...state,
                 initialValueCount: state.initialValueCount + 1,
             };
         case DECREMENT_OPERATION:
             return {
+                ...state,
                 initialValueCount: state.initialValueCount - 1
             };
         default:
