@@ -1,44 +1,28 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-import { INCREMENT_OPERATION, DECREMENT_OPERATION } from '../../constants/constants.js';
+import { incrementCount, decrementCount } from '../../actions/actionCounter.js';
 
 class Counter extends Component {
-
-  incrementOperation = () => {
-    const {
-      dispatch
-    } = this.props;
-
-    dispatch({ type: INCREMENT_OPERATION });
-  } 
-
-  decrementOperation = () => {
-    const {
-      dispatch
-    } = this.props;
-    
-    dispatch({ type: DECREMENT_OPERATION });
-  }
 
   render() {
 
     const {
-      initialValueCount
+      initialValueCount,
+      incrementCount,
+      decrementCount
     } = this.props;
 
     return (
       <div className='counter__wrapper'>
-        <button onClick={this.decrementOperation}>-</button>
+        <button onClick={decrementCount}>-</button>
         <p>{initialValueCount}</p>
-        <button onClick={this.incrementOperation}>+</button>
+        <button onClick={incrementCount}>+</button>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) =>({
-  initialValueCount: state.initialValueCount
-});
-
-export default connect(mapStateToProps)(Counter);
+export default connect(state => ({
+  initialValueCount: state.initialValueCount,
+}), { incrementCount, decrementCount })(Counter);
