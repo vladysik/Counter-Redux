@@ -1,25 +1,6 @@
-import { INCREMENT_OPERATION, DECREMENT_OPERATION } from '../constants/constants.js';
+import { combineReducers } from 'redux';
+import counterReducer from './counter.js';
 
-const initialState = {
-    initialValueCount: 0
-}
-
-const rootReducer = (state = initialState, {type}) => {
-    switch (type) {
-        case INCREMENT_OPERATION:
-            return {
-                ...state,
-                initialValueCount: state.initialValueCount + 1,
-            };
-        case DECREMENT_OPERATION:
-            return {
-                ...state,
-                initialValueCount: state.initialValueCount - 1
-            };
-        default:
-            return state;
-    }
-}
-
+const rootReducer = combineReducers({ counterReducer });
 
 export default rootReducer;

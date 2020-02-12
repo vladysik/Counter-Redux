@@ -24,5 +24,5 @@ class Counter extends Component {
 }
 
 export default connect(state => ({
-  initialValueCount: state.initialValueCount,
+  initialValueCount: state.counterReducer.initialValueCount,
 }), { incrementCount, decrementCount })(Counter);
